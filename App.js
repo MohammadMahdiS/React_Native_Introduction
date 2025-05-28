@@ -1,26 +1,53 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 
-
-const App = () => {
-  const [firstName, setFirstName] = useState('یونس');
-
-  const handleNameChange = () => {
-    setFirstName("مهدی")
+// Class Base Implement
+class App extends React.Component {
+  state = {
+    firstName : "یونس",
   }
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.header_text}>Hi React Native</Text>
+  handleNameChange = () => {
+    this.setState({
+      firstName: "مهدی",
+    })
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.header_text}>Hi React Native</Text>
+        </View>
+        <View>
+          <Text style={styles.body}>سلام {this.state.firstName} دوستان عزیز</Text>
+          <Button title="تغییر" onPress={this.handleNameChange}/>
+        </View>
       </View>
-      <View>
-        <Text style={styles.body}>سلام {firstName} دوستان عزیز</Text>
-        <Button title="تغییر" onPress={handleNameChange}/>
-      </View>
-    </View>
-  )
+    )
+  }
 }
+
+// Function Base Implement
+// const App = () => {
+//   const [firstName, setFirstName] = useState('یونس');
+
+//   const handleNameChange = () => {
+//     setFirstName("مهدی")
+//   }
+
+//   return (
+//     <View style={styles.container}>
+//       <View style={styles.header}>
+//         <Text style={styles.header_text}>Hi React Native</Text>
+//       </View>
+//       <View>
+//         <Text style={styles.body}>سلام {firstName} دوستان عزیز</Text>
+//         <Button title="تغییر" onPress={handleNameChange}/>
+//       </View>
+//     </View>
+//   )
+// }
 
 const styles = StyleSheet.create({
   container: {
