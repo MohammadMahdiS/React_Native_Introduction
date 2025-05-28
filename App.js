@@ -1,14 +1,23 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, View, Text, Button } from 'react-native';
 
 
 const App = () => {
+  const [firstName, setFirstName] = useState('یونس');
+
+  const handleNameChange = () => {
+    setFirstName("مهدی")
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.header_text}>Hi React Native</Text>
       </View>
-      <Text style={styles.body}>سلام دوستان عزیز</Text>
+      <View>
+        <Text style={styles.body}>سلام {firstName} دوستان عزیز</Text>
+        <Button title="تغییر" onPress={handleNameChange}/>
+      </View>
     </View>
   )
 }
