@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, ScrollView } from 'react-native';
 
 // Class Base Implement
 // class App extends React.Component {
@@ -39,6 +39,19 @@ const App = () => {
     setFirstName("مهدی")
   }
 
+  const [masters, setMasters] = useState([
+    { id:1, fullName: "امیر کوچکی"},
+    { id:2, fullName: "حمیدرضا سلیمانی"},
+    { id:3, fullName: "یاسین عباس نصب"},
+    { id:4, fullName: "مهناز افشار"},
+    { id:5, fullName: "ستاره امیرنیا"},
+    { id:6, fullName: "سپهر اصلانی"},
+    { id:7, fullName: "غزل پردیسیان"},
+    { id:8, fullName: "فرناز جارانی"},
+  ])
+
+
+
   return (
     <View style={styles.container}>
       {/* Title */}
@@ -68,7 +81,21 @@ const App = () => {
         <Text style={styles.label}>سن: {age} </Text>
         <TextInput style={styles.text_input} keyboardType="numeric" placeholder="مثلا 25" onChangeText={(value) => setAge(value) }/>
       </View>
+
+      <View>
+        <ScrollView>
+        {masters.map(m => {
+          return (
+            <View key={m.id}>
+              <Text style={styles.card}> {m.fullName} </Text>
+            </View>
+          )
+        })}
+        </ScrollView>
+      </View>
     </View>
+
+    
   )
 }
 
@@ -106,6 +133,14 @@ const styles = StyleSheet.create({
     width: 250,
     textAlign: "center",
     fontSize: 15,
+  },
+  card: {
+    marginTop: 25,
+    padding: 25,
+    backgroundColor: "teal",
+    fontSize: 25,
+    textAlign: "center",
+    color: "white",
   }
 })
 
