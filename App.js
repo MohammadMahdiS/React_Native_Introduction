@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Text, Button, TextInput, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 
 // Class Base Implement
 // class App extends React.Component {
@@ -59,6 +59,11 @@ const App = () => {
 
   ])
 
+  const deleteItem = id => {
+    const filtered = students.filter(m => m.id != id)
+    setStudents(filtered)
+  }
+
 
 
   return (
@@ -92,7 +97,9 @@ const App = () => {
       </View>
 
       <FlatList keyExtractor={item =>  item.id} numColumns={2} data={students} renderItem={(data) => (
+        <TouchableOpacity onPress={() => deleteItem(data.item.id) }>
         <Text style={styles.card}> {data.item.fullName} </Text>
+        </TouchableOpacity>
       )}/>
 
       <View>
