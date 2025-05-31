@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Text, Button, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Button, TextInput, ScrollView, FlatList } from 'react-native';
 
 // Class Base Implement
 // class App extends React.Component {
@@ -50,6 +50,15 @@ const App = () => {
     { id:8, fullName: "فرناز جارانی"},
   ])
 
+  const [students, setStudents] = useState([
+    {id:1, fullName: "محمدمهدی سلیمانی"},
+    {id:2, fullName: "فردین ایزدنسب"},
+    {id:3, fullName: "علی غلامی"},
+    {id:4, fullName: "قادر علوی"},
+    {id:5, fullName: "احسان امیرخانی"},
+
+  ])
+
 
 
   return (
@@ -82,6 +91,10 @@ const App = () => {
         <TextInput style={styles.text_input} keyboardType="numeric" placeholder="مثلا 25" onChangeText={(value) => setAge(value) }/>
       </View>
 
+      <FlatList keyExtractor={item =>  item.id} numColumns={2} data={students} renderItem={(data) => (
+        <Text style={styles.card}> {data.item.fullName} </Text>
+      )}/>
+
       <View>
         <ScrollView>
         {masters.map(m => {
@@ -92,7 +105,12 @@ const App = () => {
           )
         })}
         </ScrollView>
+
+       
+      
       </View>
+
+     
     </View>
 
     
@@ -141,6 +159,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: "center",
     color: "white",
+    marginHorizontal:10,
   }
 })
 
